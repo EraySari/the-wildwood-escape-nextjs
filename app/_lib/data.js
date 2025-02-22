@@ -17,7 +17,7 @@ const cabins = [
       "Spacious and comfortable, Cabin 002 is perfect for families and friends looking for an adventure in nature. Enjoy the warm wooden interiors, a fully-stocked kitchen, and a private outdoor space with a fire pit.",
     maxCapacity: 6,
     regularPrice: 450,
-    discount: 30,
+    discount: undefined,
   },
   {
     id: 3,
@@ -35,7 +35,7 @@ const cabins = [
       "An eco-friendly retreat designed for nature lovers. Cabin 004 is surrounded by tall pine trees, featuring a solar-powered system, a cozy interior, and an outdoor lounge area.",
     maxCapacity: 5,
     regularPrice: 350,
-    discount: 15,
+    discount: undefined,
   },
   {
     id: 5,
@@ -71,7 +71,7 @@ const cabins = [
       "A pet-friendly cabin with a fenced yard, perfect for families traveling with their furry friends. Features a warm fireplace and a private garden.",
     maxCapacity: 5,
     regularPrice: 400,
-    discount: 25,
+    discount: undefined,
   },
   {
     id: 9,
