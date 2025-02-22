@@ -1,5 +1,5 @@
 import { Josefin_Sans } from "next/font/google";
-import "./globals.css";
+import "./_styles/global.css";
 import Header from "./_components/Header";
 
 const josefin = Josefin_Sans({
@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
         className={`${josefin.className} antialiased bg-background text-primary-100 min-h-screen flex flex-col relative`}
       >
         <Header />
-        <div className="">
+        <div className="px-7 py-12">
           <main className="max-w-7xl mx-auto w-full">{children}</main>
         </div>
       </body>
