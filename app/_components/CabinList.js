@@ -1,9 +1,7 @@
-import { getCabins } from "../_lib/data";
 import CabinCard from "./CabinCard";
 
-export default async function CabinList() {
-  const cabinsData = await getCabins();
-
+//JUST UI, NOT FETCHING
+export default function CabinList({ cabins }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {cabinsData.map((cabin) => (

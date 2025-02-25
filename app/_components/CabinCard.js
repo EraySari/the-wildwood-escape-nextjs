@@ -6,8 +6,7 @@ import { HiOutlineHome } from "react-icons/hi2";
 import { HiOutlineUsers } from "react-icons/hi2";
 
 export default function CabinCard({ cabin }) {
-  const { id, cabinName, description, maxCapacity, regularPrice, discount } =
-    cabin;
+  const { id, name, description, maxCapacity, regularPrice, discount } = cabin;
 
   return (
     <div className="flex border border-primary-800">
@@ -25,7 +24,7 @@ export default function CabinCard({ cabin }) {
         <div className="py-4 px-5">
           <div className="flex items-center mb-3 gap-2">
             <HiOutlineHome className="h-6 w-6" />
-            <h3 className="text-2xl font-semibold text-yellow">{cabinName}</h3>
+            <h3 className="text-2xl font-semibold text-yellow">{name}</h3>
           </div>
 
           <div className="flex items-center mb-3 gap-2">

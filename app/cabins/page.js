@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import CabinList from "../_components/CabinList";
 import Spinner from "../_components/Spinner";
+import CabinListWrapper from "../_components/CabinListWrapper";
 
 export default function Cabin() {
   return (
@@ -17,7 +17,7 @@ export default function Cabin() {
       </p>
 
       <Suspense fallback={<Spinner />}>
-        <CabinList />
+        <CabinListWrapper />
       </Suspense>
     </div>
   );

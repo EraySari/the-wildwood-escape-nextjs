@@ -110,8 +110,27 @@ const cabins = [
     discount: 20,
   },
 ];
+
 export async function getCabins() {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  //await new Promise((resolve) => setTimeout(resolve, 2000));
+
+  const authData = Buffer.from(
+    `${process.env.BASIC_AUTH_USER}:${process.env.BASIC_AUTH_PASS}`
+  ).toString("base64");
+
+  const res = await fetch(process.env.API_URL, {
+    method: "GET",
+    headers: {
+      Authorization: `Basic ${authData}`,
+    },
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("API'den veri alınamadı!");
+  }
+
+  const cabins = await res.json();
 
   return cabins;
 }
