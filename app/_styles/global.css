@@ -29,3 +29,21 @@
     }
   }
 }
+
+.rdp-root {
+  --rdp-accent-color: #2c3d4f !important; /* Change the accent color to indigo. */
+  --rdp-accent-background-color: #3c546c !important; /* Change the accent background color. */
+  --rdp-nav-height: 10px !important;
+
+  /* ikisi birlikte kullanilmali */
+  --rdp-day_button-width: 30px !important; /* Buttonun genislik yüksekligi */
+  --rdp-day_button-height: 30px !important;
+
+  --rdp-day-height: 35px !important; /* Günlerin genislik yüksekligi */
+  --rdp-day-width: 35px !important;
+}
+
+.rdp-day {
+  text-align: center !important;
+  font-size: 15px;
+}

@@ -53,7 +53,7 @@ export default function CabinCard({ cabin }) {
         </div>
         <div className="border-t border-primary-800 text-right">
           <Link
-            href="/about"
+            href={`/cabins/${id}`}
             className="p-4 inline-block border-l font-semibold border-primary-800 hover:bg-primary-600 hover:text-primary-950"
           >
             Details & Reservation &rarr;
