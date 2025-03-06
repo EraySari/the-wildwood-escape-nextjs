@@ -4,15 +4,15 @@ import { differenceInDays } from "date-fns";
 import { useState } from "react";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
+import { useBooking } from "./BookingDateContext";
 
 export default function DatePicker({ cabin }) {
-  const [selectedDate, setSelectedDate] = useState({});
+  const { range, setRange, resetRange } = useBooking();
 
   const { regularPrice, discount } = cabin;
 
-  const numNight = differenceInDays(selectedDate.to, selectedDate.from);
+  const numNight = differenceInDays(range.to, range.from);
 
-  console.log(numNight);
   const cabinPrice = numNight * (regularPrice - discount);
   const startDate = new Date();
   const endDate = new Date();
@@ -24,8 +24,8 @@ export default function DatePicker({ cabin }) {
       <DayPicker
         className="pt-11 place-self-center"
         mode="range"
-        selected={selectedDate}
-        onSelect={setSelectedDate}
+        selected={range}
+        onSelect={setRange}
         numberOfMonths={2}
         captionLayout="dropdown"
         hidden={{ after: endDate }}
@@ -64,7 +64,7 @@ export default function DatePicker({ cabin }) {
         {numNight ? (
           <button
             className="border border-slate-900 hover:border-primary-700 px-4 py-3  hover:bg-slate-800 hover:text-primary-200"
-            onClick={() => setSelectedDate({})}
+            onClick={resetRange}
           >
             Clear
           </button>

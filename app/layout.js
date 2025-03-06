@@ -1,6 +1,7 @@
 import { Josefin_Sans } from "next/font/google";
 import "./_styles/global.css";
 import Header from "./_components/Header";
+import { BookingProvider } from "./_components/BookingDateContext";
 
 const josefin = Josefin_Sans({
   subsets: ["latin"],
@@ -21,7 +22,9 @@ export default function RootLayout({ children }) {
       >
         <Header />
         <div className="px-7 py-12">
-          <main className="max-w-7xl mx-auto w-full">{children}</main>
+          <main className="max-w-7xl mx-auto w-full">
+            <BookingProvider>{children}</BookingProvider>
+          </main>
         </div>
       </body>
     </html>
