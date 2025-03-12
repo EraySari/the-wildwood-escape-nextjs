@@ -19,7 +19,6 @@ export async function generateStaticParams() {
 export default async function CabinInfo({ params }) {
   const cabin = await getCabin(params.id);
 
-  console.log(cabin);
   return (
     <div className="max-w-6xl mt-8 mx-auto">
       <CabinInfoBox cabin={cabin} />

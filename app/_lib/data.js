@@ -45,3 +45,28 @@ export async function getCabin(id) {
 
   return cabin;
 }
+
+export async function getReservations() {
+  const authData = Buffer.from(
+    `${process.env.BASIC_AUTH_USER}:${process.env.BASIC_AUTH_PASS}`
+  ).toString("base64");
+
+  const res = await fetch(
+    `http://localhost:8080/api/booking/user/${process.env.BASIC_AUTH_USER}/bookings`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Basic ${authData}`,
+      },
+      next: { revalidate: 60 }, //60 seconds catch
+    }
+  );
+
+  if (!res.ok) {
+    throw new Error("API'den veri alınamadı!");
+  }
+
+  const bookings = await res.json();
+
+  return bookings;
+}

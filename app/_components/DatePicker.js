@@ -18,7 +18,6 @@ export default function DatePicker({ cabin }) {
   const endDate = new Date();
   endDate.setFullYear(endDate.getFullYear() + 2);
 
-  console.log(new Date());
   return (
     <div className="flex flex-col justify-between">
       <DayPicker

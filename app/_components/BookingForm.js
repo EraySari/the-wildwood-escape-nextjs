@@ -1,13 +1,16 @@
 "use client";
-import { bookingSubmit } from "@/lib/actions";
-import { useFormState } from "react-dom";
 import FormSubmitButton from "./Form-submit-button";
 import { useBooking } from "./BookingDateContext";
+import ErrorText from "./ErrorText";
+import { differenceInDays } from "date-fns";
+import { useActionState } from "react";
+import { revalidatePath } from "next/cache";
+import createBooking from "@/lib/actions";
 
 export default function BookingForm({ cabin }) {
   const { maxCapacity } = cabin;
 
-  const { range } = useBooking();
+  const { range, resetRange } = useBooking();
 
   const bookingData = {
     startDate: range.from,
@@ -15,11 +18,8 @@ export default function BookingForm({ cabin }) {
     cabinID: cabin.id,
   };
 
-  const createBookingWithData = bookingSubmit.bind(null, bookingData);
+  const createBookingWithData = createBooking.bind(null, bookingData);
 
-  const [state, formAction] = useFormState(createBookingWithData, {
-    message: null,
-  });
   //useFormda API çağrısını manuel olarak yapmamız gerekir (fetch). yani ekstra istemci tarafı kodu çalıştırıyor.
   // useFormState ise fetche gerek yok direkt serverda
   //Form verisi doğrudan sunucuya gidiyor, istemci tarafında ekstra bir işlem gerekmiyor.
@@ -27,8 +27,12 @@ export default function BookingForm({ cabin }) {
 
   return (
     <div className="bg-slate-500">
-      <form action={formAction}>
-        <input type="hidden" name="cabinID" value={cabin.id} />
+      <form
+        action={async (formData) => {
+          createBookingWithData(formData);
+          resetRange();
+        }}
+      >
         <div className="px-14 py-10 text-xl">
           <div className="flex flex-col gap-2 mb-10">
             <label htmlFor="guests" className="font-semibold">
@@ -67,15 +71,7 @@ export default function BookingForm({ cabin }) {
             />
           </div>
 
-          {state.message ? (
-            <div>
-              <p>{state.message}</p>
-            </div>
-          ) : (
-            ""
-          )}
-
-          <FormSubmitButton />
+          {differenceInDays(range.to, range.from) > 0 && <FormSubmitButton />}
         </div>
       </form>
     </div>
